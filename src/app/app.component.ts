@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from './header/header.component';
+import { registerLocaleData } from '@angular/common';
+import localeTW from '@angular/common/locales/zh';
+registerLocaleData(localeTW);
 
 @Component({
   selector: 'app-root',
@@ -6,23 +10,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  url = 'http://blog.miniasp.com/';
-  imgurl = '/assets/images/logo.png';
+  pi = 3.14;
+  e = 2.718281828459045;
   textCount = 0;
+  keyword = '';
   constructor() {
   }
-  changeTitle(altKey: boolean) {
-    if (altKey) {
-      this.title = 'The Will Will Web';
-    }
+  resetWord() {
+    this.keyword = '';
   }
 
-  countWord($event: any) {
-    console.log($event);
-    if($event.keyCode==27){
-      $event.target.value = "";
-    }
-    this.textCount = $event.target.value.length;
+  clickContainer(theader: HeaderComponent) {
+    theader.title = 'test';
   }
+
+
+
 }

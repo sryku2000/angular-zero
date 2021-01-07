@@ -1,0 +1,23 @@
+<header class="post-header">
+  <h2 class="post-title">
+    <a [href]="item.href" *ngIf="!onEditing">{{item.title}}</a>
+    <input size="70" [value]="item.title" *ngIf="onEditing" [(ngModel)]="item.title" (keyup.escape)="cancelEdit()" (keyup.enter)="doEdit()"/>
+  </h2>
+  <div class="post-info clearfix">
+    <span class="post-date">
+      <i class="glyphicon glyphicon-calendar"></i>{{ item.date | date }}</span>
+    <span class="post-author">
+      <i class="glyphicon glyphicon-user"></i>
+      <a [href]="item['category-link']">{{item.author}}</a>
+    </span>
+    <span class="post-category">
+      <i class="glyphicon glyphicon-folder-close"></i>
+      <a href="http://blog.miniasp.com/category/Visual-Studio.aspx">{{item.category}}</a>
+    </span>
+    <span>
+      <button (click)="deleteArticle()">刪除文章</button>
+      <button *ngIf="onEditing" (click)="cancelEdit()">取消編輯</button>
+      <button *ngIf="!onEditing" (click)="onEditing=true">編輯標題</button>
+    </span>
+  </div>
+</header>
